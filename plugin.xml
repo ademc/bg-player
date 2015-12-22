@@ -37,6 +37,20 @@
         <param name="android-package" value="com.ademc.plugins.BgPlayer" />
       </feature>
     </config-file>
+	
+	<config-file target="res/xml/config.xml" parent="/*">
+            <preference name="KeepRunning" value="true" />
+    </config-file>
+	
+	<config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <!--
+             * Puts the service in a foreground state, where the system considers
+             * it to be something the user is actively aware of and thus not a
+             * candidate for killing when low on memory.
+            -->
+            <service android:name="com.ademc.plugins.PlayerService" />
+
+    </config-file>
 
     <source-file src="src/com/ademc/plugins/BgPlayer.java" target-dir="src/com/ademc/plugins"/>
 	<source-file src="src/com/ademc/plugins/PlayerService.java" target-dir="src/com/ademc/plugins"/>

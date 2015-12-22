@@ -1,3 +1,16 @@
+var exec    = require('cordova/exec'),
+    channel = require('cordova/channel');
+
+document.addEventListener('backbutton', function () {}, false);
+
+
+channel.onCordovaReady.subscribe(function () {
+
+    channel.onCordovaInfoReady.subscribe(function () {
+    });
+
+});
+
 function BgPlayer() {
 }
 
@@ -8,35 +21,18 @@ BgPlayer.prototype.isPlaying =function(){
 	return this._isPlaying;
 }
 
-BgPlayer.prototype.play = function(mediaURL,options,successCallback, errorCallback) {
-	cordova.exec(function(){
-				this._isPlaying =true;
-				this._playingMediaUrl = mediaURL;
-				if(successCallback)
-					successCallback();
-			}, errorCallback, "BgPlayer", "play",[mediaURL,options]);
-	/*
-	if(this.isPlaying()){
-		if(this._playingMediaUrl != mediaURL)
-			this.stop(function(){ this._playInternal(mediaURL,options,successCallback,errorCallback); },null);
-	}else{
-		this._playInternal(mediaURL,options,successCallback,errorCallback);
-	}*/
+BgPlayer.prototype.play = function(mediaURL,options) {
+	this._isPlaying = true;
+    cordova.exec(null, null, 'BgPlayer', 'play', [mediaURL,options]);
 }
 
-BgPlayer.prototype._playInternal = function(mediaURL,options,successCallback, errorCallback){
-	
+BgPlayer.prototype.stop = function() {
+	this._isPlaying = false;
+    cordova.exec(null, null, 'BgPlayer', 'stop', []);
 }
 
-BgPlayer.prototype.stop = function(successCallback, errorCallback) {
-	cordova.exec(function(){
-		this._isPlaying =false;
-		this._playingMediaUrl = '';
-		if(successCallback)
-			successCallback();
-	}, errorCallback, "BgPlayer", "stop",[]);
-}
-
+BgPlayer.prototype.onactivate = function () {};
+BgPlayer.prototype.ondeactivate = function () {};
 BgPlayer.prototype.onStartPlaying=function(){}
 
 BgPlayer.prototype.onfailure=function(error){}
