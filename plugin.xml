@@ -7,7 +7,7 @@
   <name>BgPlayer</name>
 
   <description>
-    This plugin allows you to play background auido.
+    This plugin allows you to play background audio.
 	Media player plays audio or video (only sound) files even your application goes to background.
   </description>
 
@@ -34,10 +34,10 @@
 
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="BgPlayer">
-        <param name="android-package" value="com.ademc.cordova.plugin.bgplayer" />
+        <param name="android-package" value="com.ademc.plugin.bgplayer.BgPlayer" />
       </feature>
     </config-file>
 
-    <source-file src="src/com/ademc/cordova/plugin/bgplayer/BgPlayer.java" target-dir="src/com/ademc/cordova/plugin/bgplayer"/>
+    <source-file src="src/com/ademc/plugin/bgplayer/BgPlayer.java" target-dir="src/com/ademc/plugin/bgplayer"/>
   </platform>
 </plugin>

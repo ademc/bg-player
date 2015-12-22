@@ -29,7 +29,11 @@ BgPlayer.prototype.stop = function(successCallback, errorCallback) {
 
 BgPlayer.prototype.onStartPlaying=function(){}
 
-BgPlayer.prototype.onFailure=function(error){}
+BgPlayer.prototype.onfailure=function(error){}
+
+BgPlayer.prototype.onstart=function(){}
+
+BgPlayer.prototype.onstop=function(){}
 
 BgPlayer.install = function () {
   if (!window.plugins) {

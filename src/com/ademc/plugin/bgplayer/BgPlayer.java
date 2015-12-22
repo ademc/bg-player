@@ -1,4 +1,4 @@
-package com.ademc.cordova.plugin.bgplayer;
+package com.ademc.plugin.bgplayer;
 
 import io.vov.vitamio.MediaPlayer;
 import io.vov.vitamio.MediaPlayer.OnPreparedListener;
@@ -37,11 +37,12 @@ public class BgPlayer extends CordovaPlugin {
 	}
 
 	public static final String ACTION_PLAY = "play";
+	public static final String ACTION_START_PLAYING = "StartPlaying";
 	public static final String ACTION_STOP = "stop";
 	public static final String ACTION_FAILURE = "failure";
 
 	// Plugin namespace
-	private static final String JS_NAMESPACE = "cordova.plugins.backgroundMode";
+	private static final String JS_NAMESPACE = "window.plugins.BgPlayer";
 
 	// Flag indicates if the service is bind
 	private boolean isBind = false;
@@ -194,8 +195,8 @@ public class BgPlayer extends CordovaPlugin {
 	public void fireJsEvent(PluginEvent event, String params) {
 		String eventName;
 
-		if (event != PluginEvent.FAILURE)
-			return;
+//		if (event != PluginEvent.FAILURE)
+	//		return;
 
 		switch (event) {
 		case PLAY:
@@ -204,13 +205,11 @@ public class BgPlayer extends CordovaPlugin {
 		case STOP:
 			eventName = ACTION_STOP;
 			break;
+		case PLAYING:
+			eventName = ACTION_START_PLAYING;
 		default:
 			eventName = ACTION_FAILURE;
 		}
-
-		String active = event == PluginEvent.PLAY ? "true" : "false";
-
-		String flag = String.format("%s._isActive=%s;", JS_NAMESPACE, active);
 
 		String fn = String.format("setTimeout('%s.on%s(%s)',0);", JS_NAMESPACE,
 				eventName, params);
