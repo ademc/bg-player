@@ -39,5 +39,6 @@
     </config-file>
 
     <source-file src="src/com/ademc/plugins/BgPlayer.java" target-dir="src/com/ademc/plugins"/>
+	<source-file src="src/com/ademc/plugins/PlayerService.java" target-dir="src/com/ademc/plugins"/>
   </platform>
 </plugin>

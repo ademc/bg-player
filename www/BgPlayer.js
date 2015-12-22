@@ -4,26 +4,36 @@ function BgPlayer() {
 BgPlayer.prototype._isPlaying =false;
 BgPlayer.prototype._playingMediaUrl ='';
 
-BgPlayer.prototype.isPlaying =function(mediaUrl){
-	return this._playingMediaUrl == mediaUrl;
+BgPlayer.prototype.isPlaying =function(){
+	return this._isPlaying;
 }
 
 BgPlayer.prototype.play = function(mediaURL,options,successCallback, errorCallback) {
-	if(this.isPlaying(mediaURL) == false)
-		this.stop(function(){
-			cordova.exec(function(){
+	cordova.exec(function(){
 				this._isPlaying =true;
 				this._playingMediaUrl = mediaURL;
-				successCallback();
+				if(successCallback)
+					successCallback();
 			}, errorCallback, "BgPlayer", "play",[mediaURL,options]);
-		});
+	/*
+	if(this.isPlaying()){
+		if(this._playingMediaUrl != mediaURL)
+			this.stop(function(){ this._playInternal(mediaURL,options,successCallback,errorCallback); },null);
+	}else{
+		this._playInternal(mediaURL,options,successCallback,errorCallback);
+	}*/
+}
+
+BgPlayer.prototype._playInternal = function(mediaURL,options,successCallback, errorCallback){
+	
 }
 
 BgPlayer.prototype.stop = function(successCallback, errorCallback) {
 	cordova.exec(function(){
 		this._isPlaying =false;
 		this._playingMediaUrl = '';
-		successCallback();
+		if(successCallback)
+			successCallback();
 	}, errorCallback, "BgPlayer", "stop",[]);
 }
 
@@ -31,7 +41,7 @@ BgPlayer.prototype.onStartPlaying=function(){}
 
 BgPlayer.prototype.onfailure=function(error){}
 
-BgPlayer.prototype.onstart=function(){}
+BgPlayer.prototype.onplay=function(){}
 
 BgPlayer.prototype.onstop=function(){}
 
