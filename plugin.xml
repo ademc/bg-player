@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="com.ademc.cordova.plugin.bg-player"
+        version="1.0.0">
+
+  <name>BgPlayer</name>
+
+  <description>
+    This plugin allows you to play background auido.
+	Media player plays audio or video (only sound) files even your application goes to background.
+  </description>
+
+  <author>AdemC</author>
+
+  <license>MIT</license>
+  <keywords>android, player, media player, background, sound</keywords>
+
+
+  <repo>https://github.com/ademc/bg-player.git</repo>
+
+  <issue>https://github.com/ademc/bg-player/issues</issue>
+
+  <engines>
+    <engine name="cordova" version=">=3.0.0"/>
+  </engines>
+
+  <js-module src="www/BgPlayer.js" name="BgPlayer">
+    <clobbers target="window.plugins.BgPlayer" />
+  </js-module>
+
+  <!-- android -->
+  <platform name="android">
+
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="BgPlayer">
+        <param name="android-package" value="com.ademc.cordova.plugin.bgplayer" />
+      </feature>
+    </config-file>
+
+    <source-file src="src/com/ademc/cordova/plugin/bgplayer/BgPlayer.java" target-dir="src/com/ademc/cordova/plugin/bgplayer"/>
+  </platform>
+</plugin>

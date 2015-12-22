@@ -1,0 +1,25 @@
+{
+    "version": "1.0.0",
+    "name": "com.ademc.cordova.plugin.bg-player",
+    "cordova_name": "BgPlayer",
+    "description": "\n    This plugin allows you to play background auido.\n    Media player plays audio or video (only sound) files even your application goes to background.\n  ",
+    "license": "MIT",
+    "repo": "https://github.com/ademc/bg-player.git",
+    "issue": "https://github.com/ademc/bg-player/issues",
+    "keywords": [
+        "android",
+        "player",
+        "media player",
+        "background",
+		"sound"
+    ],
+    "platforms": [
+        "android"
+    ],
+    "engines": [
+        {
+            "name": "cordova",
+            "version": ">=3.0.0"
+        }
+    ]
+}
