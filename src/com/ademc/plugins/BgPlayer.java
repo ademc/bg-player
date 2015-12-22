@@ -1,4 +1,4 @@
-package com.ademc.plugin.bgplayer;
+package com.ademc.plugins;
 
 import io.vov.vitamio.MediaPlayer;
 import io.vov.vitamio.MediaPlayer.OnPreparedListener;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        id="com.ademc.cordova.plugin.bg-player"
+        id="com.ademc.plugins.bg-player"
         version="1.0.0">
 
   <name>BgPlayer</name>
@@ -34,10 +34,10 @@
 
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="BgPlayer">
-        <param name="android-package" value="com.ademc.plugin.bgplayer.BgPlayer" />
+        <param name="android-package" value="com.ademc.plugins.BgPlayer" />
       </feature>
     </config-file>
 
-    <source-file src="src/com/ademc/plugin/bgplayer/BgPlayer.java" target-dir="src/com/ademc/plugin/bgplayer"/>
+    <source-file src="src/com/ademc/plugins/BgPlayer.java" target-dir="src/com/ademc/plugins"/>
   </platform>
 </plugin>
