@@ -28,31 +28,24 @@ BgPlayer.prototype.getPlayingMediaUrl=function(){
 
 BgPlayer.prototype.play = function(mediaURL,options) {
 	if(this.isPlaying()){
-		if(this.getPlayingMediaUrl() != mediaURL)
-			cordova.exec(function(val){
-				this._isPlaying =false;
-				this._playingMediaUrl = '';
-
-				this._playInternal(mediaURL,options,null,null);
-			}, null, 'BgPlayer', 'stop', [mediaURL,options]);
+		if(this.getPlayingMediaUrl() != mediaURL){
+			this.stop();			
+			this._playInternal(mediaURL,options,null,null);
+		}
 	}else
 		this._playInternal(mediaURL,options);    
 }
 
-BgPlayer.prototype._playInternal = function(mediaURL,options,successCallback,errorCallback){
-	cordova.exec(function(val){
-		this._isPlaying = true;
-		this._playingMediaUrl = mediaURL;
-		if(successCallback)
-			successCallback();
-	}, null, 'BgPlayer', 'play', [mediaURL,options]);
+BgPlayer.prototype._playInternal = function(mediaURL,options){
+	cordova.exec(null,null, 'BgPlayer', 'play', [mediaURL,options]);
+	this._isPlaying = true;
+    this._playingMediaUrl = mediaURL;
 }
 
 BgPlayer.prototype.stop = function() {
-    cordova.exec(function(val){
-		this._isPlaying =false;
-		this._playingMediaUrl = '';
-	}, null, 'BgPlayer', 'stop', []);
+    cordova.exec(null, null, 'BgPlayer', 'stop', []);
+	this._isPlaying =false;
+	this._playingMediaUrl = '';
 }
 
 BgPlayer.prototype.onStartPlaying=function(){}

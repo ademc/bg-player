@@ -94,7 +94,7 @@ public class PlayerService extends Service implements OnPreparedListener {
 	private void startPlay() {
 		final PlayerService ths = this;
 		if(BgPlayer.getCordova().getThreadPool() == null){
-			fireJsEvent(PluginEvent.FAILURE, "Player hazırlanamadı.");
+			BgPlayer.getInstance().fireJsEvent(PluginEvent.FAILURE, "Player hazırlanamadı.");
 			return;
 		}
 		BgPlayer.getCordova().getThreadPool().execute(new Runnable() {
