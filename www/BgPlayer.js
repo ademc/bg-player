@@ -27,7 +27,6 @@ BgPlayer.prototype.getPlayingMediaUrl=function(){
 }
 
 BgPlayer.prototype.play = function(mediaURL,options) {
-	this._isPlaying = true;
 	if(this.isPlaying()){
 		if(this.getPlayingMediaUrl() != mediaURL)
 			cordova.exec(function(){
