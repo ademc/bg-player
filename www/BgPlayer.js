@@ -15,20 +15,45 @@ function BgPlayer() {
 }
 
 BgPlayer.prototype._isPlaying =false;
-BgPlayer.prototype._playingMediaUrl ='';
 
 BgPlayer.prototype.isPlaying =function(){
 	return this._isPlaying;
 }
 
+BgPlayer.prototype._playingMediaUrl ='';
+
+BgPlayer.prototype.getPlayingMediaUrl=function(){
+	return this._playingMediaUrl;
+}
+
 BgPlayer.prototype.play = function(mediaURL,options) {
 	this._isPlaying = true;
-    cordova.exec(null, null, 'BgPlayer', 'play', [mediaURL,options]);
+	if(this.isPlaying()){
+		if(this.getPlayingMediaUrl() != mediaURL)
+			cordova.exec(function(){
+				this._isPlaying =false;
+				this._playingMediaUrl = '';
+
+				this._playInternal(mediaURL,options,null,null);
+			}, null, 'BgPlayer', 'stop', [mediaURL,options]);
+	}else
+		this._playInternal(mediaURL,options);    
+}
+
+BgPlayer.prototype._playInternal = function(mediaURL,options,successCallback,errorCallback){
+	cordova.exec(function(){
+		this._isPlaying = true;
+		this._playingMediaUrl = mediaURL;
+		if(successCallback)
+			successCallback();
+	}, null, 'BgPlayer', 'play', [mediaURL,options]);
 }
 
 BgPlayer.prototype.stop = function() {
-	this._isPlaying = false;
-    cordova.exec(null, null, 'BgPlayer', 'stop', []);
+    cordova.exec(function(){
+		this._isPlaying =false;
+		this._playingMediaUrl = '';
+	}, null, 'BgPlayer', 'stop', []);
 }
 
 BgPlayer.prototype.onactivate = function () {};
