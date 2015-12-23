@@ -38,12 +38,14 @@ BgPlayer.prototype.play = function(mediaURL,options) {
 
 BgPlayer.prototype._playInternal = function(mediaURL,options){
 	cordova.exec(null,null, 'BgPlayer', 'play', [mediaURL,options]);
+	this.onplay();
 	this._isPlaying = true;
     this._playingMediaUrl = mediaURL;
 }
 
 BgPlayer.prototype.stop = function() {
     cordova.exec(null, null, 'BgPlayer', 'stop', []);
+	this.onstop();
 	this._isPlaying =false;
 	this._playingMediaUrl = '';
 }
