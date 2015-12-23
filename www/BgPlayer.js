@@ -29,7 +29,7 @@ BgPlayer.prototype.getPlayingMediaUrl=function(){
 BgPlayer.prototype.play = function(mediaURL,options) {
 	if(this.isPlaying()){
 		if(this.getPlayingMediaUrl() != mediaURL)
-			cordova.exec(function(){
+			cordova.exec(function(val){
 				this._isPlaying =false;
 				this._playingMediaUrl = '';
 
@@ -40,7 +40,7 @@ BgPlayer.prototype.play = function(mediaURL,options) {
 }
 
 BgPlayer.prototype._playInternal = function(mediaURL,options,successCallback,errorCallback){
-	cordova.exec(function(){
+	cordova.exec(function(val){
 		this._isPlaying = true;
 		this._playingMediaUrl = mediaURL;
 		if(successCallback)
@@ -49,14 +49,12 @@ BgPlayer.prototype._playInternal = function(mediaURL,options,successCallback,err
 }
 
 BgPlayer.prototype.stop = function() {
-    cordova.exec(function(){
+    cordova.exec(function(val){
 		this._isPlaying =false;
 		this._playingMediaUrl = '';
 	}, null, 'BgPlayer', 'stop', []);
 }
 
-BgPlayer.prototype.onactivate = function () {};
-BgPlayer.prototype.ondeactivate = function () {};
 BgPlayer.prototype.onStartPlaying=function(){}
 
 BgPlayer.prototype.onfailure=function(error){}
