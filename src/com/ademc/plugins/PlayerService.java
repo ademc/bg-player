@@ -1,7 +1,7 @@
 package com.ademc.plugins;
 
-import io.vov.vitamio.MediaPlayer;
-import io.vov.vitamio.MediaPlayer.OnPreparedListener;
+import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnPreparedListener;
 
 import java.io.IOException;
 import java.util.Timer;
@@ -101,8 +101,9 @@ public class PlayerService extends Service implements OnPreparedListener {
 			@Override
 			public void run() {
 				try {
-					mMediaPlayer = new MediaPlayer(BgPlayer.getCordova()
-							.getActivity());
+					/*mMediaPlayer = new MediaPlayer(BgPlayer.getCordova()
+							.getActivity());*/
+					mMediaPlayer = new MediaPlayer();
 					mMediaPlayer.setVolume(100, 100);
 					mMediaPlayer.setDataSource(BgPlayer.getMediaPath());
 					mMediaPlayer.setOnPreparedListener(ths);

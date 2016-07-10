@@ -53,10 +53,10 @@ public class BgPlayer extends CordovaPlugin {
 		mCordova = cordova;
 		mInstance = this;
 
-		if (!io.vov.vitamio.LibsChecker.checkVitamioLibs(cordova.getActivity())){
+		/*if (!io.vov.vitamio.LibsChecker.checkVitamioLibs(cordova.getActivity())){
 			fireJsEvent(PluginEvent.FAILURE, "Player hazırlanamadı.");
 			return;
-		}
+		}*/
 	}
 
 	private static BgPlayer mInstance = null;
